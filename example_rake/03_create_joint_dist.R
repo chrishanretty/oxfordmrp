@@ -177,7 +177,11 @@ nrow(aps)
 aps <- replicate(50, aps, simplify = FALSE)
 aps <- bind_rows(aps)
 
-aps_preds <- predict(mod_2, newdata = aps, type = "prob")
+### Imputation
+
+mod <- readRDS("working/vi_imputation_model.rds")
+
+aps_preds <- predict(mod, newdata = aps, type = "prob")
 
 aps$past_vote <- apply(aps_preds, 1, function(x)sample(names(x), size = 1, prob = x))
 
