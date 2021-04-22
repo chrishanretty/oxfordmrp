@@ -135,15 +135,6 @@ age_labels <- paste(lag(age_breaks[-1]) + 1, age_breaks[-1], sep = "-")
 age_labels[1] <- "16-19"
 age_labels <- age_labels
 
-
-
-mod_0 <- multinom(vi ~ age + gender + quals + ethn +
-                    soc2010 + privpub,
-                data = ses16,
-                MaxNWts = 5000,
-                maxit = 500,
-                hessian = TRUE)
-
 mod <- multinom(vi ~ poly(age, 2) + gender + quals + ethn +
                     privpub,
                 data = ses16,
@@ -152,19 +143,4 @@ mod <- multinom(vi ~ poly(age, 2) + gender + quals + ethn +
                 weights = ses16$w2fullw8,
                 hessian = TRUE)
 
-
-## library(msgl)
-
-## ses16 <- ses16 %>%
-##     mutate(age_cut = cut(age, age_breaks, age_labels)) 
-
-## x <- ses16 %>%
-##     dplyr::select(-vi, -age) %>% 
-##     sapply(function(x)as.numeric(factor(x)))
-
-## y <- ses16 %>%
-##     pull(vi)
-
-## f <- cv(x, y, lambda = 0.1)
-
-## f2 <- msgl::fit(x, y, lambda = 0.34)
+saveRDS(mod, file = "working/vi_imputation_model.rds")
