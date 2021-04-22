@@ -1,0 +1,46 @@
+This folder contains R scripts necessary to generate joint
+distributions for Scottish Parliamentary Constituencies.
+
+The folder contains four scripts:
+
+ - 01_get_spc_margins.R
+ - 02_vi_imputation_model.R
+ - 03_create_joint_dist.R
+ - 04_rake.R
+
+Script `01_get_spc_margins.R` gets (univariate) distributions for
+seven different variables (age, gender, highest qualifications,
+ethnicity, SOC2010 category, private/public sector employment, and
+2016 vote). It relies on small area population estimates contained in
+`data/spc-19-tabs_2019.csv`, margins from the Labour Force
+Survey/Annual Population Survey, obtained through Nomisweb.co.uk, and
+electoral results from the Electoral Commission.
+
+Script `02_vi_imputation_model.R` estimates a multinomial model of
+vote choice on data from the 2016 Scottish Election Study panel
+data. The model uses as predictor variables age, gender, highest
+qualifications, and ethnicity.
+
+Script `03_create_joint_dist.R` reads in the most recent microdata
+from the Labour Force Survey/Annual Population Survey, imputes vote
+choice, and then coarsens some variables (like age).
+
+Finally, script `04_rake.R` takes the joint (Scotland-wide)
+distribution created by script `03_create_joint_dist.R`, and rakes it
+to constituency margins one after another.
+
+REQUIREMENTS
+===
+
+You will need:
+
+ - to download the most recent version of the Labour Force Survey
+   microdata from the UK Data Service
+   (https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=8789)
+  - R packages:
+     * rio
+     * tidyverse
+     * anesrake
+     * doParallel
+     * nnet
+
