@@ -1,0 +1,6 @@
+This folder contains two code snippets:
+
+ - `example_rake` gives code to create a post-stratification frame for Scottish Parliamentary Constituencies.
+ - `example_model` gives code to generate estimates of (2016-vintage) preferences for PR using the British Election Survey.
+
+Both folders contain READMEs of their own, which detail the files and any additional requirements.
