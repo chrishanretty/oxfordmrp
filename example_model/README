@@ -1,0 +1,10 @@
+This folder contains code to generate MRP estimates of preferences for
+PR at the constituency level.
+
+Please note that this is a teaching example, and that some features
+which make it good as a teaching example (small realized sample size)
+may make it a poor guide to actual preferences.
+
+Please do not redistribute the files in `data/`, which were produced
+by the British Election Study team. If you use these files, please
+cite the team appropriately.
